@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event Management</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      background-color: #6b8f73;
+      padding: 40px 20px;
+    }
+
+    .service-container {
+      width: 100%;
+      max-width: 900px;
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 36px;
+      color: #333333;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 18px;
+      color: #555555;
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    .service-container img {
+      width: 100%;
+      max-width: 700px;
+      height: auto;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+
+    .button-group {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    a {
+      display: inline-block;
+      padding: 12px 25px;
+      background-color: #007bff;
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 18px;
+      transition: background-color 0.3s;
+    }
+
+    a:hover {
+      background-color: #0056b3;
+    }
+
+    a:active {
+      background-color: #003f7f;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      font-size: 0.9em;
+      color: #777777;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 768px) {
+      .service-container {
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 28px;
+      }
+
+      p {
+        font-size: 16px;
+      }
+
+      a {
+        padding: 10px 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 20px;
+      }
+
+      .service-container {
+        padding: 15px;
+      }
+
+      h1 {
+        font-size: 24px;
+      }
+
+      p {
+        font-size: 14px;
+      }
+
+      a {
+        padding: 8px 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="service-container">
+    <h1>Event Management</h1>
+    <p>Our Event Management services ensure your event runs smoothly from start to finish. We handle everything from planning to execution, leaving you to enjoy the event.</p>
+    <img src="../images/event-management.jpg" alt="Event Management Image">
+    
+    <!-- Button group to place Contact and Home buttons side by side -->
+    <div class="button-group">
+      <a href="/pages/home.html#about">Contact Us for More Info</a>
+      <a href="/pages/home.html">Home</a>
+    </div>
+  </div>
+
+  
+  
+  
+  <footer>
+    <p>&copy; 2023 Your Company | All Rights Reserved</p>
+  </footer>
+</body>
+</html>

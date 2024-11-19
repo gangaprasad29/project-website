@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Homepage</title>
+    <style>
+      /* Basic reset */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      /* Body and layout styling */
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        color: #333;
+        line-height: 1.6;
+        margin: 0;
+      }
+
+      /* Header styling with smaller blue line */
+      header {
+        background-color: #007bff;
+        color: white;
+        padding: 10px 20px;
+        position: fixed;
+        width: auto; /* Set to auto so it only spans around the button */
+        top: 0;
+        left: 20px; /* Move header slightly inward */
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        border-radius: 5px; /* Rounded corners */
+      }
+
+      header button {
+        background: none;
+        border: none;
+        font-size: 18px;
+        color: white;
+        cursor: pointer;
+        padding: 5px 10px;
+      }
+
+      /* Sidebar styling */
+      .sidebar {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: #333;
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 60px;
+      }
+
+      .sidebar a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: white;
+        display: block;
+        transition: 0.3s;
+      }
+
+      .sidebar a:hover {
+        background-color: #ddd;
+        color: black;
+      }
+
+      .sidebar .submenu a {
+        font-size: 20px;
+        padding-left: 50px;
+      }
+
+      .sidebar .submenu a:hover {
+        background-color: #aaa;
+      }
+
+      /* Main content padding for header */
+      main {
+        padding-top: 80px;
+        background-color: #fff;
+      }
+
+      .hero {
+        text-align: center;
+        padding: 50px 20px;
+        background-color: #6b8f73;
+        color: white;
+      }
+
+      .hero h1 {
+        font-size: 3em;
+        margin-bottom: 10px;
+      }
+
+      .hero p {
+        font-size: 1.2em;
+        margin-bottom: 20px;
+      }
+
+      .cta-button {
+        background-color: #007bff;
+        color: white;
+        padding: 15px 25px;
+        font-size: 1.2em;
+        text-decoration: none;
+        border-radius: 5px;
+        text-transform: uppercase;
+        cursor: pointer;
+      }
+
+      .services-highlight {
+        text-align: center;
+        padding: 50px 20px;
+      }
+
+      .services-highlight h2 {
+        font-size: 2.5em;
+        margin-bottom: 20px;
+      }
+
+      .service {
+        display: inline-block;
+        width: 30%;
+        margin: 0 10px;
+        background-color: #f4f4f4;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+      }
+
+      .service:hover {
+        transform: translateY(-5px);
+      }
+
+      .service h3 {
+        font-size: 1.8em;
+        color: #007bff;
+        margin-bottom: 10px;
+      }
+
+      .testimonials {
+        background-color: #f9f9f9;
+        padding: 50px 20px;
+        text-align: center;
+      }
+
+      .testimonials blockquote {
+        font-style: italic;
+        margin-bottom: 20px;
+      }
+
+      .testimonials cite {
+        font-weight: bold;
+        color: #007bff;
+      }
+
+      /* About Us Section Styling */
+      .about {
+        background-color: black;
+        color: white;
+        padding: 50px 20px;
+        text-align: center;
+      }
+
+      .about h1 {
+        font-size: 2.5em;
+        margin-bottom: 20px;
+      }
+
+      .about h2 {
+        font-size: 2em;
+        margin-bottom: 10px;
+      }
+
+      .about ul {
+        list-style-type: none;
+        margin-top: 20px;
+      }
+
+      .about li {
+        font-size: 1.2em;
+        margin-bottom: 10px;
+      }
+
+      /* Footer */
+      footer {
+        background-color: #333;
+        color: white;
+        padding: 20px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header with smaller blue line around menu button -->
+    <header>
+      <button id="menu-toggle" class="menu-toggle">☰ Menu</button>
+    </header>
+
+    <!-- Sidebar -->
+    <div id="sidebar" class="sidebar">
+      <a href="/pages/home.html">Home</a>
+      <a href="/pages/login2.html">Login</a>
+      <a href="#">Services</a>
+      <div class="submenu">
+        <a href="/pages/advertising&marketing.html">Advertising & Marketing</a>
+        <a href="/pages/event.html">Event Management</a>
+        <a href="/pages/instagram.html">Social Media Handling</a>
+      </div>
+      <a href="/pages/contact-booking.html">Bookings</a>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+      <!-- Hero Section -->
+      <section class="hero">
+        <h1>Welcome to Our Company</h1>
+        <p>Your success is our mission.</p>
+        <button id="learn-more" class="cta-button">Learn More</button>
+      </section>
+
+      <!-- Services Highlight Section -->
+      <section class="services-highlight" id="services">
+        <h2>Our Services</h2>
+        <div class="service">
+          <h3>Advertising</h3>
+          <p>Creative advertising solutions to boost your brand.</p>
+        </div>
+        <div class="service">
+          <h3>Marketing</h3>
+          <p>Strategic marketing plans tailored for your business.</p>
+        </div>
+        <div class="service">
+          <h3>Social Media Handling</h3>
+          <p>Manage your social media presence with our expertise.</p>
+        </div>
+        <div class="service">
+          <h3>Event Management</h3>
+          <p>We handle the planning and execution of all events.</p>
+        </div>
+      </section>
+
+      <!-- Testimonials Section -->
+      <section class="testimonials">
+        <h2>What Our Clients Say</h2>
+        <blockquote>
+          <p>"This company transformed our marketing strategy!"</p>
+          <cite>- Happy Client</cite>
+        </blockquote>
+      </section>
+
+      <!-- About Us Section -->
+      <section class="about" id="about">
+        <h1>About Us</h1>
+        <p>
+          We are a dedicated team committed to helping your business succeed.
+        </p>
+        <h2>Our Mission</h2>
+        <p>To provide innovative solutions that drive results.</p>
+        <h2>Our Team</h2>
+        <ul>
+          <li>Jay Bagate - CEO</li>
+          <li>PH No: 8605211075</li>
+        </ul>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <p>&copy; 2023 Your Company. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript for sidebar toggle and smooth scroll -->
+    <script>
+      const menuToggle = document.getElementById("menu-toggle");
+      const sidebar = document.getElementById("sidebar");
+      const learnMoreButton = document.getElementById("learn-more");
+      const servicesSection = document.getElementById("services");
+
+      menuToggle.addEventListener("click", () => {
+        if (sidebar.style.width === "250px") {
+          sidebar.style.width = "0";
+        } else {
+          sidebar.style.width = "250px";
+        }
+      });
+
+      // Smooth scroll to services section on "Learn More" button click
+      learnMoreButton.addEventListener("click", () => {
+        servicesSection.scrollIntoView({ behavior: "smooth" });
+      });
+    </script>
+  </body>
+</html>

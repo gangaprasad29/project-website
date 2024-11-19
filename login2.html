@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign In / Sign Up</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #6b8f73;
+        margin: 0;
+        font-family: Arial, sans-serif;
+      }
+      .auth-container {
+        width: 100%;
+        max-width: 400px;
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+        max-height: 500px;
+      }
+      h1 {
+        color: #333;
+        text-align: center;
+        font-size: 28px;
+        margin-bottom: 20px;
+      }
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      label {
+        font-size: 16px;
+        color: #444;
+      }
+      input {
+        padding: 12px;
+        font-size: 16px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        transition: border-color 0.3s;
+        outline: none;
+      }
+      button {
+        padding: 15px 25px;
+        font-size: 18px;
+        color: #fff;
+        background-color: #007bff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        width: 100%;
+        text-transform: uppercase;
+      }
+      .message {
+        padding: 10px;
+        border-radius: 5px;
+        text-align: center;
+        margin-bottom: 20px;
+        display: none;
+      }
+      .success {
+        background-color: #28a745;
+        color: #fff;
+      }
+      .error {
+        background-color: #dc3545;
+        color: #fff;
+      }
+      .toggle-button {
+        font-size: 14px;
+        color: #007bff;
+        cursor: pointer;
+        text-align: center;
+        margin-top: 15px;
+      }
+      .sidebar {
+        text-align: center;
+        margin-top: 20px;
+      }
+      .sidebar a {
+        color: #007bff;
+        text-decoration: none;
+        font-size: 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="auth-container" id="authContainer">
+      <h1 id="formTitle">Sign In</h1>
+      <div id="successMessage" class="message success">
+        Form submitted successfully!
+      </div>
+      <div id="errorMessage" class="message error">
+        Error submitting form. Please try again.
+      </div>
+
+      <form id="authForm" onsubmit="return handleFormSubmission(event)">
+        <div class="form-group">
+          <label for="username">Username:</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            placeholder="Enter your username"
+            required
+          />
+        </div>
+
+        <div class="form-group" id="emailGroup" style="display: none">
+          <label for="email">Email:</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Enter your email"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Enter your password"
+            required
+          />
+        </div>
+
+        <div id="confirmPasswordGroup" class="form-group" style="display: none">
+          <label for="confirmPassword">Confirm Password:</label>
+          <input
+            type="password"
+            id="confirmPassword"
+            name="confirmPassword"
+            placeholder="Confirm your password"
+          />
+        </div>
+
+        <button type="submit">Submit</button>
+      </form>
+
+      <div class="toggle-button" onclick="toggleAuthMode()">
+        Don't have an account? Sign Up
+      </div>
+
+      <!-- Sidebar (Positioned at the bottom of auth-container) -->
+      <div id="sidebar" class="sidebar">
+        <a href="/pages/home.html">Home</a>
+      </div>
+    </div>
+
+    <script>
+      let isSignUp = false;
+    
+      function toggleAuthMode() {
+        isSignUp = !isSignUp;
+        document.getElementById("formTitle").textContent = isSignUp
+          ? "Sign Up"
+          : "Sign In";
+        document.getElementById("confirmPasswordGroup").style.display = isSignUp
+          ? "block"
+          : "none";
+        document.getElementById("emailGroup").style.display = isSignUp
+          ? "block"
+          : "none";
+        document.getElementById("email").required = isSignUp;
+        document.querySelector(".toggle-button").textContent = isSignUp
+          ? "Already have an account? Sign In"
+          : "Don't have an account? Sign Up";
+      }
+    
+      // Validate password for Sign Up
+      function validatePassword(password) {
+        const passwordRegex =
+          /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,}$/;
+        return passwordRegex.test(password);
+      }
+    
+      async function handleFormSubmission(event) {
+        event.preventDefault();
+    
+        // Reset messages
+        document.getElementById("successMessage").style.display = "none";
+        document.getElementById("errorMessage").style.display = "none";
+    
+        // Get input values
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+        const confirmPassword = document.getElementById("confirmPassword")
+          ? document.getElementById("confirmPassword").value
+          : "";
+        const email = document.getElementById("email")
+          ? document.getElementById("email").value
+          : "";
+    
+        // Check for password validation (Sign Up only)
+        if (isSignUp && !validatePassword(password)) {
+          document.getElementById("errorMessage").textContent =
+            "Password must be at least 8 characters long, include an uppercase letter, a lowercase letter, a number, and a special character.";
+          document.getElementById("errorMessage").style.display = "block";
+          return;
+        }
+    
+        // Check for password match during Sign Up
+        if (isSignUp && password !== confirmPassword) {
+          document.getElementById("errorMessage").textContent =
+            "Passwords do not match.";
+          document.getElementById("errorMessage").style.display = "block";
+          return;
+        }
+    
+        // Prepare the form data
+        const formData = { username, password };
+        if (isSignUp) {
+          formData.email = email;
+          formData.confirmPassword = confirmPassword; // include confirmPassword for signup
+        }
+    
+        try {
+          // Send the POST request
+          const response = await fetch(
+            isSignUp
+              ? "http://localhost:3000/signup"
+              : "http://localhost:3000/signin",
+            {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(formData),
+            }
+          );
+    
+          const responseData = await response.json();
+    
+          // Debugging log to check response
+          console.log("Response status:", response.status);
+          console.log("Response data:", responseData);
+    
+          if (response.ok) {
+            // If login is successful, store the JWT token in localStorage
+            if (!isSignUp && responseData.token) {
+              localStorage.setItem("token", responseData.token);
+    
+              // Redirect to the home page
+              window.location.href = "/pages/home.html"; // Change this to the appropriate path for your home page
+            }
+    
+            // Show success message and reset the form
+            document.getElementById("successMessage").textContent = isSignUp
+              ? "Sign Up successful!"
+              : "Login successful!";
+    
+            document.getElementById("successMessage").style.display = "block";
+            document.getElementById("authForm").reset();
+    
+            setTimeout(() => {
+              document.getElementById("successMessage").style.display = "none";
+            }, 5000);
+          } else {
+            // Handle error: existing user or invalid credentials
+            if (responseData.error === 'User already exists' && isSignUp) {
+              document.getElementById("errorMessage").textContent =
+                "This user already exists. Please sign in.";
+            } else if (responseData.error === 'Invalid credentials' && !isSignUp) {
+              document.getElementById("errorMessage").textContent =
+                "Incorrect username or password. Please try again.";
+            } else {
+              document.getElementById("errorMessage").textContent =
+                responseData.error || "Error submitting form. Please try again.";
+            }
+            document.getElementById("errorMessage").style.display = "block";
+          }
+        } catch (error) {
+          console.error("Request failed:", error);
+          document.getElementById("errorMessage").textContent =
+            "Error submitting form. Please try again.";
+          document.getElementById("errorMessage").style.display = "block";
+        }
+      }
+    </script>
+    
+  </body>
+</html>
